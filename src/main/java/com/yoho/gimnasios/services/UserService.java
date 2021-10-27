@@ -1,6 +1,7 @@
 package com.yoho.gimnasios.services;
 
 import com.yoho.gimnasios.models.Assist;
+import com.yoho.gimnasios.models.Payment;
 import com.yoho.gimnasios.models.User;
 import com.yoho.gimnasios.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,12 @@ public class UserService {
 
     public Collection<Assist> getAssistsByUser(Long id){
          return this.getUserById(id).getAsistencias();
+    }
+
+    public User addUserPayment(Payment payment, Long id){
+         User user = this.getUserById(id);
+         user.getPagos().add(payment);
+         this.userRepository.flush();
+         return user;
     }
 }

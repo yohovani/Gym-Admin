@@ -1,6 +1,7 @@
 package com.yoho.gimnasios.controllers;
 
 import com.yoho.gimnasios.models.Assist;
+import com.yoho.gimnasios.models.Payment;
 import com.yoho.gimnasios.models.User;
 import com.yoho.gimnasios.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,10 @@ public class UserController {
     @GetMapping(path = "/getUserAssistance/{userId}")
     public Collection<Assist> getUserAssistance(@PathVariable("userId") Long id){
         return this.userService.getAssistsByUser(id);
+    }
+
+    @PostMapping(path = "/addUserPayment/{userId}")
+    public User addUserPayment(@RequestBody Payment payment, @PathVariable("userId") Long id){
+        return this.userService.addUserPayment(payment, id);
     }
 }

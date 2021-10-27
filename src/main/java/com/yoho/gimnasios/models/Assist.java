@@ -49,4 +49,12 @@ public class Assist {
     public void setAssist_date(LocalDateTime assist_date) {
         this.assist_date = assist_date;
     }
+
+    @Override
+    public String toString() {
+        return "Assist{" +
+                "id=" + id +
+                ", assist_date=" + assist_date +
+                '}';
+    }
 }

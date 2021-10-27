@@ -53,6 +53,17 @@ public class User {
     )
     private Set<Assist> asistencias = new HashSet<>();
 
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "usuario_pagos",
+            joinColumns = {@JoinColumn(name = "usuario_id")},
+            inverseJoinColumns = {@JoinColumn(name = "pago_id")}
+    )
+    private Set<Payment> pagos = new HashSet<>();
+
 
     public User(){}
 
@@ -121,5 +132,17 @@ public class User {
 
     public void setAsistencias(Set<Assist> asistencias) {
         this.asistencias = asistencias;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Set<Payment> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(Set<Payment> pagos) {
+        this.pagos = pagos;
     }
 }
